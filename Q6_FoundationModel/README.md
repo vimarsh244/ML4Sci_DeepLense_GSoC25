@@ -18,6 +18,18 @@
 
 ---
 
+## Results v4
+
+
+
+
+## Results v3
+
+[Weights](results_2)
+
+[Notebook](2_deeplense-foundation-model.ipynb)
+
+Changes for here: latent dim = 512
 
 ## Results v2
 

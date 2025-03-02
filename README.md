@@ -5,9 +5,9 @@ This repository contains assignments for the DeepLense project, part of the GSoC
 Assignment questions from [here](https://docs.google.com/document/d/1a-5JiHph3K59gV3-kEZWzKYTFMvDeYiJvoE0U2I4x0w/edit?usp=sharing)
 
 
-Just attempted most of these questions as midsems were coming up and wanted to do something. These problems were pretty cool and doable for the most part, hence attempted as many as I could. So far haven't made the focus on getting the best performance (accuracy, and all) just that the model is learning and that the task is being solved to an extent.
+Just attempted most of these questions as midsems were coming up and wanted to do something interesting. These problems were pretty cool and doable for the most part, hence attempted as many as I could. So far haven't made the focus on getting the best performance (accuracy, and all) just that the model is learning and that the task is being solved to an extent.
 
-## Assignments Overview
+## assignments overview
 
 - **Q5_PINN**  
     The goal was to implement a physics-informed neural network for gravitational lensing. 
@@ -36,10 +36,10 @@ Just attempted most of these questions as midsems were coming up and wanted to d
 
 
 
-All the details are in each's respective READMEs.
+All the details are in each's respective READMEs. They are more like notes rn,.. not finalied
 
 
-##### Datasets:
+##### datasets:
 Download these from the google drive folder from the assignment page:
 ```
 dataset/*

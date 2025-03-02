@@ -16,7 +16,7 @@
 
 ## Stratergy
 
-I've taken a pretty straightforward approach here. I built a custom PyTorch dataset to load our npy image files for lensed and non-lensed galaxies, which keeps things neat since each image is already shaped as (3, 64, 64). Because the non-lensed class is way more common, I used a weighted sampler so that the model sees more examples of the rare, lensed galaxies. The model itself is a CNN with a few convolutional layers and fully connected layers, ending with one output neuron (that gets passed through a sigmoid). I then evaluate the model using the ROC curve and AUC score, focusing on the positive class (lensed galaxies) since that's our main interest. Overall, it's a straightforward strategy that works well for this imbalanced dataset.
+i've taken a pretty straightforward approach here. there is a custom PyTorch dataset to load our npy image files for lensed and non-lensed galaxies, which keeps things neat since each image is already shaped as (3, 64, 64). Because the non-lensed class is way more common, a weighted sampler is there so that the model sees more examples of the rare, lensed galaxies. The model itself is a CNN with a few convolutional layers and fully connected layers, ending with one output neuron (that gets passed through a sigmoid). the model is then evaluated using the ROC curve and AUC score, focusing on the positive class (lensed galaxies) since that's our main interest.
 
 ## Results
 
@@ -24,4 +24,4 @@ I've taken a pretty straightforward approach here. I built a custom PyTorch data
 
 AUC Score: 0.9762439291197965 
 
-The loss is still decreasing and hasn't saturated so still room for better performance (can add more params to the model as well)
+The loss is still decreasing and hasn't saturated so still room for better performance (can use a larger model as well)
