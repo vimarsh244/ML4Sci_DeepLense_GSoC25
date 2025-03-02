@@ -1,19 +1,18 @@
+## Task Details:
 
-
-## Task States:
 **Specific Test VI. Foundation Model** 
 
-**Task VI.A:** Train a [Masked Autoencoder (MAE)](https://arxiv.org/abs/2111.06377) on the no\_sub samples from the provided dataset to learn a feature representation of strong lensing images. The MAE should be trained for reconstructing masked portions of input images. Once this pre-training phase is complete, fine-tune the model on the full dataset for a multi-class classification task to distinguish between the three classes. Please implement your approach in **PyTorch** or **Keras** and discuss your strategy.
+**Task VI.A:** Train a [Masked Autoencoder (MAE)](https://arxiv.org/abs/2111.06377) on the no_sub samples from the provided dataset to learn a feature representation of strong lensing images. The MAE should be trained for reconstructing masked portions of input images. Once this pre-training phase is complete, fine-tune the model on the full dataset for a multi-class classification task to distinguish between the three classes. Please implement your approach in **PyTorch** or **Keras** and discuss your strategy.
 
 **Dataset:** [https://drive.google.com/file/d/1znqUeFzYz-DeAE3dYXD17qoMPK82Whji/view?usp=sharing](https://drive.google.com/file/d/1znqUeFzYz-DeAE3dYXD17qoMPK82Whji/view?usp=sharing)
 
-**Dataset Description:** The Dataset consists of three classes: no\_sub (no substructure), cdm (cold dark matter substructure), and axion (axion-like particle substructure).
+**Dataset Description:** The Dataset consists of three classes: no_sub (no substructure), cdm (cold dark matter substructure), and axion (axion-like particle substructure).
 
 **Evaluation Metrics:** ROC curve (Receiver Operating Characteristic curve) and AUC score (Area Under the ROC Curve) 
 
 **Task VI.B:** Take the pre-trained model from Task VI.A and fine-tune it for a super-resolution task. The model should be fine-tuned to upscale low-resolution strong lensing images using the provided high-resolution samples as ground truths. Please implement your approach in **PyTorch** or **Keras** and discuss your strategy.
 
-**Dataset:** [https://drive.google.com/file/d/1uJmDZw649XS-r-dYs9WD-OPwF\_TIroVw/view?usp=sharing](https://drive.google.com/file/d/1uJmDZw649XS-r-dYs9WD-OPwF_TIroVw/view?usp=sharing)
+**Dataset:** [https://drive.google.com/file/d/1uJmDZw649XS-r-dYs9WD-OPwF_TIroVw/view?usp=sharing](https://drive.google.com/file/d/1uJmDZw649XS-r-dYs9WD-OPwF_TIroVw/view?usp=sharing)
 
 **Dataset Description:** The dataset comprises simulated strong lensing images with no substructure at multiple resolutions: high-resolution (HR) and low-resolution (LR).
 
@@ -21,6 +20,10 @@
 
 
 ## Results v2
+
+[Weights](weights_1)
+
+[Notebook](1_deeplense-foundation-model.ipynb)
 
 50 epochs each
 
@@ -32,15 +35,15 @@ also added Auto Masked Autoencoder... essentially automatically applies the mask
 
 [MAE Pretraining] Epoch [50/50], Loss: 0.000458
 
-![Masked Autoencoder normal 50 epoch](image-3.png)
+![Masked Autoencoder normal 50 epoch](results_images_1/image-3.png)
 
 
 ##### Classification
 
-[Classifier] Epoch [28/50], Train Loss: 0.6245, Train Acc: 71.85%, Val Loss: 1.8388, Val Acc: 47.16%, ROC AUC: 0.7429
-Early stopping triggered after 28 epochs
+[Classifier] Epoch [28/50], Train Loss: 0.6245, Train Acc: 71.85%, Val Loss: 1.8388, Val Acc: 47.16%, ROC AUC: 0.7429  
+Early stopping triggered after 28 epochs  
 Loaded best model with AUC: 0.7645
-
+```
 AUC Scores:
 ------------------------------
 Class      | AUC Score 
@@ -51,15 +54,15 @@ Class      | AUC Score
 ------------------------------
 Micro-avg  | 0.6735
 Macro-avg  | 0.7429
+```
+![Using previous encoder classify](results_images_1/image-4.png)
 
-![Using previous encoder classify](image-4.png)
-
-[Classifier] Epoch [36/50], Train Loss: 0.0142, Train Acc: 99.66%, Val Loss: 0.4523, Val Acc: 88.17%, ROC AUC: 0.9699
-Early stopping triggered after 36 epochs
+[Classifier] Epoch [36/50], Train Loss: 0.0142, Train Acc: 99.66%, Val Loss: 0.4523, Val Acc: 88.17%, ROC AUC: 0.9699  
+Early stopping triggered after 36 epochs  
 Loaded best model with AUC: 0.9705
 
-![Finetuning the full model](image-5.png)
-
+![Finetuning the full model](results_images_1/image-5.png)
+```
 AUC Scores:
 ------------------------------
 Class      | AUC Score 
@@ -70,24 +73,26 @@ Class      | AUC Score
 ------------------------------
 Micro-avg  | 0.9717
 Macro-avg  | 0.9699
+```
 
 
 #### Auto MAE
 
 [AutoMAE] Epoch [50/50], Recon Loss: 0.000490, Mask Loss: -0.000049, Total Loss: -0.000049, Mode: Mask Update
 
-![Auto MAE image reconstruction](image-6.png)
+![Auto MAE image reconstruction](results_images_1/image-6.png)
 
-![AutoMAE training history](image-7.png)
+![AutoMAE training history](results_images_1/image-7.png)
 
 #### Classification with automae encoder
 
-[Classifier] Epoch [18/50], Train Loss: 0.8449, Train Acc: 58.00%, Val Loss: 1.1180, Val Acc: 44.00%, ROC AUC: 0.6685
-Early stopping triggered after 18 epochs
+[Classifier] Epoch [18/50], Train Loss: 0.8449, Train Acc: 58.00%, Val Loss: 1.1180, Val Acc: 44.00%, ROC AUC: 0.6685  
+Early stopping triggered after 18 epochs  
 Loaded best model with AUC: 0.6934
 
-![alt text](image-8.png)
+![alt text](results_images_1/image-8.png)
 
+```
 AUC Scores:
 ------------------------------
 Class      | AUC Score 
@@ -98,16 +103,16 @@ Class      | AUC Score
 ------------------------------
 Micro-avg  | 0.6457
 Macro-avg  | 0.6685
-
+```
 Fine-tuning the entire model...
 
-[Classifier] Epoch [21/50], Train Loss: 0.2453, Train Acc: 90.67%, Val Loss: 1.5103, Val Acc: 52.24%, ROC AUC: 0.8986
-Early stopping triggered after 21 epochs
+[Classifier] Epoch [21/50], Train Loss: 0.2453, Train Acc: 90.67%, Val Loss: 1.5103, Val Acc: 52.24%, ROC AUC: 0.8986  
+Early stopping triggered after 21 epochs  
 Loaded best model with AUC: 0.9321
 
+![alt text](results_images_1/image-9.png)
 
-![alt text](image-9.png)
-
+```
 AUC Scores:
 ------------------------------
 Class      | AUC Score 
@@ -118,21 +123,21 @@ Class      | AUC Score
 ------------------------------
 Micro-avg  | 0.7753
 Macro-avg  | 0.8986
+```
 
 #### SuperResolution
 
 [Super-Resolution] Epoch [50/50], MSE Loss: 0.000093, L1 Loss: 0.005871, Total Loss: 0.003028, PSNR: 40.32 dB
 
-![Super Resolution Results](image-10.png)
+![Super Resolution Results](results_images_1/image-10.png)
 
 ---
 
 ## Results v1:
 
-
 `[MAE Pretraining] Epoch [50/50], Loss: 0.000390`
 
-![Reconstruction of image](image-2.png)
+![Reconstruction of image](results_old/image-2.png)
 
 ```
 [Classifier] Epoch [31/50], Train Loss: 0.5620, Train Acc: 75.14%, Val Loss: 0.9332, Val Acc: 61.07%, ROC AUC: 0.8208
@@ -148,13 +153,15 @@ Fine-tuning the entire model...
 
 `[Super-Resolution] Epoch [50/50], MSE Loss: 0.000093, L1 Loss: 0.005868, Total Loss: 0.003027, PSNR: 40.34 dB`
 
-![Super Resolution](image-1.png)
+![Super Resolution](results_old/image-1.png)
 
 
 
 ## Results run 1:
 
-![First succcessful run superresolution for random images](SuperResolution_v0_1.png)
+[Weights](weights_old)
+
+![First succcessful run superresolution for random images](results_old/SuperResolution_v0_1.png)
 
 
 ## Results run 2:
@@ -246,4 +253,4 @@ Starting super-resolution fine-tuning...
 
 ```
 
-![Superres sun 2](image.png)
+![Superres sun 2](results_old/image.png)
