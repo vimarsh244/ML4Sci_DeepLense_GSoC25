@@ -1,4 +1,4 @@
-# DeepLense Projects for GSOC25 - ML4Sci
+# Assignments for DeepLense Projects for GSoC'25 - ML4Sci
 
 This repository contains assignments for the DeepLense project, part of the GSoC'25 for the ML4Sci organization. 
 
