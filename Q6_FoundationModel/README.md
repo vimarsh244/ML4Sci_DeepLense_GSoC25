@@ -18,12 +18,12 @@
 
 ---
 
-## Results v4
+#### Results v4
 
 
 
 
-## Results v3
+#### Results v3
 
 [Weights](results_2)
 
@@ -31,7 +31,7 @@
 
 Changes for here: latent dim = 512
 
-## Results v2
+#### Results v2
 
 [Weights](weights_1)
 
@@ -43,14 +43,14 @@ also added Auto Masked Autoencoder... essentially automatically applies the mask
 
 [Paper](https://arxiv.org/html/2303.06583v2)
 
-#### MAE
+##### MAE
 
 [MAE Pretraining] Epoch [50/50], Loss: 0.000458
 
 ![Masked Autoencoder normal 50 epoch](results_images_1/image-3.png)
 
 
-##### Classification
+###### Classification
 
 [Classifier] Epoch [28/50], Train Loss: 0.6245, Train Acc: 71.85%, Val Loss: 1.8388, Val Acc: 47.16%, ROC AUC: 0.7429  
 Early stopping triggered after 28 epochs  
@@ -88,7 +88,7 @@ Macro-avg  | 0.9699
 ```
 
 
-#### Auto MAE
+##### Auto MAE
 
 [AutoMAE] Epoch [50/50], Recon Loss: 0.000490, Mask Loss: -0.000049, Total Loss: -0.000049, Mode: Mask Update
 
@@ -96,7 +96,7 @@ Macro-avg  | 0.9699
 
 ![AutoMAE training history](results_images_1/image-7.png)
 
-#### Classification with automae encoder
+##### Classification with automae encoder
 
 [Classifier] Epoch [18/50], Train Loss: 0.8449, Train Acc: 58.00%, Val Loss: 1.1180, Val Acc: 44.00%, ROC AUC: 0.6685  
 Early stopping triggered after 18 epochs  
@@ -137,7 +137,7 @@ Micro-avg  | 0.7753
 Macro-avg  | 0.8986
 ```
 
-#### SuperResolution
+##### SuperResolution
 
 [Super-Resolution] Epoch [50/50], MSE Loss: 0.000093, L1 Loss: 0.005871, Total Loss: 0.003028, PSNR: 40.32 dB
 
@@ -145,7 +145,7 @@ Macro-avg  | 0.8986
 
 ---
 
-## Results v1:
+#### Results v1:
 
 `[MAE Pretraining] Epoch [50/50], Loss: 0.000390`
 
@@ -169,14 +169,14 @@ Fine-tuning the entire model...
 
 
 
-## Results run 1:
+#### Results run 1:
 
 [Weights](weights_old)
 
 ![First succcessful run superresolution for random images](results_old/SuperResolution_v0_1.png)
 
 
-## Results run 2:
+#### Results run 2:
 
 ```
 Starting MAE pretraining...
@@ -266,3 +266,9 @@ Starting super-resolution fine-tuning...
 ```
 
 ![Superres sun 2](results_old/image.png)
+
+
+## good resources
+
+Automatic masks MAE: https://arxiv.org/html/2303.06583v2
+

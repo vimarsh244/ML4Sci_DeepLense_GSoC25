@@ -1,39 +1,54 @@
+## stratergy
 
+pretty standard.. CNN for image classification
+
+## code
 
 [Jupter Notebook: Code](Q1_classification.ipynb)
 
-# Final Results
+## final results
 
-## Using Resnet18 block
+#### Using Resnet18 block
 
 `pretrained=False`
 
 batch size = 32
 
-![train val graphs](image-4.png)
+![train val graphs](images/image-4.png)
 
-![roc auc score](image-5.png)
+![roc auc score](images/image-5.png)
 
 `Epoch 300/300, Train Loss: 0.0000, Train Acc: 100.00%, Val Loss: 0.6623, Val Acc: 91.41%`
 
 AUC Score: 0.9838126488888888
 
-## Using Ensamble of models
+#### Using Ensamble of models
 
 - ensambling resnet18 and densenet121 (not the most ideal combination but just to try it out)
 
+![train val loss](images/image-7.png)
 
+![ROC AUC score](images/image-6.png)
 
-## Using Vision Transformer block
+AUC Score: 0.9867628222222221
 
+#### using ViT block
 
+DID NOT WORK ... ahhahaha
 
+batch size = 128
 
-## using resnet18 block v0
+![val acc](images/image-2.png)
 
-![ROC  plot](image.png)
+![roc](images/image-3.png)
 
-![train and val accuracy](image-1.png)
+AUC Score: 0.5030166266666667
+
+#### using resnet18 block v0
+
+![ROC  plot](images/image.png)
+
+![train and val accuracy](images/image-1.png)
 
 AUC Score: 0.9596819022222222
 
@@ -54,13 +69,3 @@ Epoch 10/10, Train Loss: 0.1241, Train Acc: 95.28%, Val Loss: 0.4387, Val Acc: 8
 
 ```
 
-## using ViT block
-
-
-batch size = 128
-
-![val acc](image-2.png)
-
-![roc](image-3.png)
-
-AUC Score: 0.5030166266666667

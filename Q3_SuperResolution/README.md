@@ -35,7 +35,7 @@ and from testing seems to work better, as expected but then again its performanc
 
 ## results
 
-3A. 
+#### 3A. 
 
 ```
 Evaluating on train set:
@@ -57,7 +57,7 @@ Average SSIM: 0.9740
 ![3A from val set](images/image-1.png)
 
 
-3B.
+#### 3B.
 
 ```
 Evaluating on train set:
@@ -81,7 +81,7 @@ Average SSIM: 0.8495
 These need some work, current stratergy isn't working too well, might use some better stratergy.. complete finetune instead of just last few layers?
 
 
-3B (update using finetune of all param):
+#### 3B (update using finetune of all param):
 
 ```
 Evaluating on train set:
