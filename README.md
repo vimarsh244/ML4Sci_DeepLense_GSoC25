@@ -1,6 +1,6 @@
 # Assignments for DeepLense Projects for GSoC'25 - ML4Sci
 
-This repository contains assignments for the DeepLense project, part of the GSoC'25 for the ML4Sci organization. 
+This repository contains assignment solutions for the DeepLense project, part of the GSoC'25 for the ML4Sci organization. 
 
 Assignment questions from [here](https://docs.google.com/document/d/1a-5JiHph3K59gV3-kEZWzKYTFMvDeYiJvoE0U2I4x0w/edit?usp=sharing) or [pdf](/GSoC25_DeepLense_Tests.pdf)
 
@@ -11,14 +11,39 @@ Just attempted most of these questions as midsems were coming up and wanted to d
 
 doccumentation in progress, but below are the questions attempted and their readme's with details.
 
+- **Q1_Classification**
+
+    [readme](Q1_Classification/README.md)
+
+
+
+- **Q2_IdentifyingLenses**
+
+    [readme](Q2_IdentifyingLenses/README.md)
+
+
+    Binary classification but with weighted data
+
+
+- **Q3_SuperResolution**
+
+    [readme](Q3_SuperResolution/README.md)
+
+- **Q4_Diffusion**  
+    [readme](Q4_Diffusion/README.md)
+
+
+    Contains resources and examples related to diffusion models for image generation and reconstruction.
+    UNDER PROGRESS
+
 - **Q5_PINN**  
     [readme](Q5_PINN/README.md)
 
 
-    The goal was to implement a physics-informed neural network for gravitational lensing. 
+    The goal is to implement a physics-informed neural network for gravitational lensing. 
     To do this task:
     - Built resnet backbone for feature extraction
-    - add physics based loss components
+    - added physics based loss components
     - this comes from gravitational lensing equation:
     - ... to add here the eqn
     - train with that
@@ -33,31 +58,12 @@ doccumentation in progress, but below are the questions attempted and their read
     - Fine-tuning on multi-class classification (no_sub, cdm, axion) using a the earlier trained encoder.
     - Super-resolution fine-tuning on low-resolution (LR) to high-resolution (HR) image tasks.
     
-- **Q4_Diffusion**  
-    [readme](Q4_Diffusion/README.md)
-
-
-    Contains resources and examples related to diffusion models for image generation and reconstruction.
-    UNDER PROGRESS
-
-- **Q1_Classification**
-    [readme](Q1_Classification/README.md)
 
 
 
-- **Q2_IdentifyingLenses**
-    [readme](Q2_IdentifyingLenses/README.md)
 
 
-    Binary classification but with weighted data
-
-
-- **Q3_SuperResolution**
-    [readme](Q3_SuperResolution/README.md)
-
-
-
-All the details are in each's respective READMEs. They are more like notes rn,.. not finalied .. like logs
+All the details are in each's respective READMEs. They are more like notes rn, .. like logs
 
 
 ### datasets:
