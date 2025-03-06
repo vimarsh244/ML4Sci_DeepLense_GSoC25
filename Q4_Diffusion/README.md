@@ -6,7 +6,9 @@ loss is decreasing still it doesnt seem to be doing antyhing, i suspect some cha
 Trying with modified architecture thanks to vid by umar jamil [new code v1](2code.py)
 
 
-![samples from the dataset](images/dataset-samples.png)
+After 25 epochs, with time_emb_dim=196, these are some images being generated
+
+![16x Sample images](images/2code_25_epoch_run_Figure_many.png)
 
 After a very short run (10 epochs) using batch size of 16 got it to generate something:
 
@@ -16,6 +18,10 @@ It atleast is now generating something rather than original garbage:
 
 ![noisy old random images](images/old_model_not_working_images.png)
 
+
+**From the dataset**
+
+![samples from the dataset](images/dataset-samples.png)
 
 
 ## good resources
