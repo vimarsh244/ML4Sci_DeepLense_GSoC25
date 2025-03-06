@@ -8,7 +8,20 @@ pretty standard.. CNN for image classification
 
 ## final results
 
-#### Using Resnet18 block
+### Using Ensamble of models
+
+[Kaggle Run Notebook](kaggle_run_Q1_deeplense-classification.ipynb)
+
+- ensambling resnet18 and densenet121 (not the most ideal combination but just to try it out)
+
+![train val loss](images/image-7.png)
+
+![ROC AUC score](images/image-6.png)
+
+AUC Score: 0.9867628222222221
+
+
+### Using Resnet18 block
 
 `pretrained=False`
 
@@ -22,17 +35,8 @@ batch size = 32
 
 AUC Score: 0.9838126488888888
 
-#### Using Ensamble of models
 
-- ensambling resnet18 and densenet121 (not the most ideal combination but just to try it out)
-
-![train val loss](images/image-7.png)
-
-![ROC AUC score](images/image-6.png)
-
-AUC Score: 0.9867628222222221
-
-#### using ViT block
+### using ViT block
 
 DID NOT WORK ... ahhahaha
 
@@ -44,7 +48,7 @@ batch size = 128
 
 AUC Score: 0.5030166266666667
 
-#### using resnet18 block v0
+### using resnet18 block v0
 
 ![ROC  plot](images/image.png)
 
