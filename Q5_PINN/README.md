@@ -7,7 +7,9 @@
 
 360 epochs
 
-completely useless, there are other model problems but such brute forcing works?!... still model needs some fixing as val loss is fluctuating way too much current split has some issue or some issue is definitely there
+very weird.. , there are other model problems but such brute forcing works?!... seems to be the case
+
+still model needs some fixing as val loss is fluctuating way too much current split has some issue or some issue is definitely there
 
 ![ROC graph](images/image-2.png)
 

@@ -2,8 +2,12 @@ Not working .. just black images being generated not sure why...
 loss is decreasing still it doesnt seem to be doing antyhing, i suspect some channel issue but couldnt find the bug
 
 
+![UNet architecture](image.png)
+
 
 ## good resources
+
+Video by Umar Jamil: https://www.youtube.com/watch?v=I1sPXkm2NH4
 
 DDPM paper: https://arxiv.org/abs/2006.11239
 

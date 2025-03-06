@@ -5,9 +5,11 @@ This repository contains assignments for the DeepLense project, part of the GSoC
 Assignment questions from [here](https://docs.google.com/document/d/1a-5JiHph3K59gV3-kEZWzKYTFMvDeYiJvoE0U2I4x0w/edit?usp=sharing) or [pdf](/GSoC25_DeepLense_Tests.pdf)
 
 
-Just attempted most of these questions as midsems were coming up and wanted to do something interesting. These problems were pretty cool and doable for the most part, hence attempted as many as I could. So far haven't made the focus on getting the best performance (accuracy, and all) just that the model is learning and that the task is being solved to an extent.
+Just attempted most of these questions as midsems were coming up and wanted to do something interesting. These problems were pretty cool and doable for the most part, hence attempted as many as I could. So far haven't made the focus on getting the best performance (accuracy, and all) just that the model is learning and that the task is being solved to an extent. a lot of code is from my older implementations for image classificationm etc. 
 
 ### assignments overview
+
+doccumentation in progress, but below are the questions attempted and their readme's with details.
 
 - **Q5_PINN**  
     [readme](Q5_PINN/README.md)
