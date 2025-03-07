@@ -47,17 +47,17 @@ transform = transforms.Compose([
 data_dir = '/home/vimarsh/Desktop/3-2/GSoC/ML4Sci/Diffusion_Samples/Samples'
 dataset = NpyImageDataset(data_dir=data_dir, transform=transform)
 train_size = int(1.0 * len(dataset))
-val_size = len(dataset) - train_size
+val_size = len(dataset) - train_size #no val in this (doesn;t make sense)
 dataset_train, dataset_val = random_split(dataset, [train_size, val_size])
 print(f"Training samples: {len(dataset_train)}")
 print(f"Validation samples: {len(dataset_val)}")
 
-batch_size = 16 # just almost the max that could fit on my local laptop's gpu (4050)
-train_loader = DataLoader(dataset_train, batch_size=batch_size, shuffle=True, num_workers=4)
-val_loader = DataLoader(dataset_val, batch_size=batch_size, shuffle=False, num_workers=4)
+batch_size = 24 # 4050mobile is smol
+train_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
 
 ## DIFFUSION MODEL (thanks to resources as per in readme)
+
 # Sinusoidal positional embedding for timesteps
 class SinusoidalPosEmb(nn.Module):
     def __init__(self, dim):
@@ -81,19 +81,23 @@ class ResidualBlock(nn.Module):
         self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1)
         self.time_mlp = nn.Linear(time_emb_dim, out_channels)
+
+        # If channel numbers differ, project input for residual addition
         self.res_conv = nn.Conv2d(in_channels, out_channels, kernel_size=1) if in_channels != out_channels else None
         self.relu = nn.ReLU()
 
     def forward(self, x, t):
         h = self.relu(self.conv1(x))
+
         # Process and add time embedding
         time_emb = self.relu(self.time_mlp(t)).unsqueeze(-1).unsqueeze(-1)
+
         h = h + time_emb
         h = self.conv2(self.relu(h))
         res = self.res_conv(x) if self.res_conv is not None else x
         return h + res
 
-# Downsampling block for U-Net
+# Downsampling block from U-Net
 class Down(nn.Module):
     def __init__(self, in_channels, out_channels, time_emb_dim):
         super().__init__()
@@ -106,23 +110,26 @@ class Down(nn.Module):
         x = self.downsample(x)
         return skip, x
 
-# Upsampling block that accepts the skip connection channel count explicitly
+# upsampling block that accepts the skip connection channel count explicitly
 class Up(nn.Module):
     def __init__(self, in_channels, skip_channels, out_channels, time_emb_dim, output_padding=0):
         super().__init__()
         self.upsample = nn.ConvTranspose2d(in_channels, out_channels, kernel_size=4, stride=2, padding=1, output_padding=output_padding)
-        # Input to the residual block is the concatenation of the upsampled features and the skip connection.
+
+        # input channels for the residual block is concatenation of the upsampled features and the skip connection
         self.resblock = ResidualBlock(skip_channels + out_channels, out_channels, time_emb_dim)
 
     def forward(self, x, skip, t):
         x = self.upsample(x)
+
+        # concatanating skip connection along channel dimension
         x = torch.cat([x, skip], dim=1)
         x = self.resblock(x, t)
         return x
 
-# The enhanced U-Net architecture for noise prediction with increased layers and parameters
+# the U-Net architecture for noise prediction
 class UNet(nn.Module):
-    def __init__(self, time_emb_dim=196):
+    def __init__(self, time_emb_dim=128):
         super().__init__()
         # Time embedding network
         self.time_embedding = nn.Sequential(
@@ -134,45 +141,46 @@ class UNet(nn.Module):
         # Initial convolution
         self.init_conv = nn.Conv2d(1, 64, kernel_size=3, padding=1)
 
-        # Downsampling layers: Three levels down
-        self.down1 = Down(64, 128, time_emb_dim)    # Produces skip1 with 128 channels
-        self.down2 = Down(128, 256, time_emb_dim)     # Produces skip2 with 256 channels
-        self.down3 = Down(256, 512, time_emb_dim)     # Produces skip3 with 512 channels
+        # Downsampling layers
+        self.down1 = Down(64, 128, time_emb_dim)  # Produces skip1 with 128 channels
+        self.down2 = Down(128, 256, time_emb_dim)  # Produces skip2 with 256 channels
 
-        # Bottleneck with two ResidualBlocks
-        self.bot1 = ResidualBlock(512, 512, time_emb_dim)
-        self.bot2 = ResidualBlock(512, 512, time_emb_dim)
+        # Bottleneck residual block
+        self.bot1 = ResidualBlock(256, 256, time_emb_dim)
 
-        # Upsampling layers: Mirror the downsampling path
-        self.up1 = Up(512, skip_channels=512, out_channels=256, time_emb_dim=time_emb_dim, output_padding=0)
-        self.up2 = Up(256, skip_channels=256, out_channels=128, time_emb_dim=time_emb_dim, output_padding=0)
-        self.up3 = Up(128, skip_channels=128, out_channels=64, time_emb_dim=time_emb_dim, output_padding=0)
+        # Upsampling layers
+        # For up1: input is from bottleneck (256 channels), skip2 has 256 channels, output desired is 128 channels.
+        self.up1 = Up(256, skip_channels=256, out_channels=128, time_emb_dim=time_emb_dim, output_padding=1)
+        # For up2: input is from up1 (128 channels), skip1 has 128 channels, output desired is 64 channels.
+        self.up2 = Up(128, skip_channels=128, out_channels=64, time_emb_dim=time_emb_dim, output_padding=0)
 
-        # Final convolution to predict noise
+        # Final convolution layer to predict noise (output same channels as input)
         self.out_conv = nn.Conv2d(64, 1, kernel_size=1)
     
     def forward(self, x, t):
-        # Obtain time embeddings
+        # Get time embeddings
         t = self.time_embedding(t)
+
         # Initial convolution
         x0 = self.init_conv(x)
+
         # Downsampling path
         skip1, x1 = self.down1(x0, t)
         skip2, x2 = self.down2(x1, t)
-        skip3, x3 = self.down3(x2, t)
+
         # Bottleneck
-        x_bot = self.bot1(x3, t)
-        x_bot = self.bot2(x_bot, t)
+        x_bot = self.bot1(x2, t)
+
         # Upsampling path
-        x_up1 = self.up1(x_bot, skip3, t)
-        x_up2 = self.up2(x_up1, skip2, t)
-        x_up3 = self.up3(x_up2, skip1, t)
+        x_up1 = self.up1(x_bot, skip2, t)
+        x_up2 = self.up2(x_up1, skip1, t)
+
         # Final output: predicted noise
-        out = self.out_conv(x_up3)
+        out = self.out_conv(x_up2)
         return out
 
 # hyperparameters
-num_timesteps = 1000
+num_timesteps = 1500
 beta_start = 1e-4
 beta_end = 0.02
 betas = torch.linspace(beta_start, beta_end, num_timesteps)
@@ -199,11 +207,10 @@ def q_sample(x0, t, noise=None):
     sqrt_one_minus_alphas_cumprod_t = sqrt_one_minus_alphas_cumprod.to(x0.device)[t].reshape(-1, 1, 1, 1)
     return sqrt_alphas_cumprod_t * x0 + sqrt_one_minus_alphas_cumprod_t * noise
 
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = UNet(time_emb_dim=196).to(device)
-optimizer = optim.Adam(model.parameters(), lr=1e-4)
-num_epochs = 0
+model = UNet(time_emb_dim=128).to(device)
+optimizer = optim.Adam(model.parameters(), lr=5e-5)
+num_epochs = 25
 
 for epoch in range(num_epochs):
     model.train()
@@ -229,11 +236,10 @@ for epoch in range(num_epochs):
     print(f"Epoch {epoch+1}/{num_epochs}, Loss: {avg_loss:.4f}")
 
 #save model
-# torch.save(model.state_dict(), 'diffusion_model_t196_epoch25.pth')
+torch.save(model.state_dict(), 'old_diffusion_model_t128_epoch50.pth')
 
 #load model
-model = UNet(time_emb_dim=196).to(device)
-model.load_state_dict(torch.load('diffusion_model_t196_epoch25.pth'))
+model.load_state_dict(torch.load('old_diffusion_model_t128_epoch50.pth'))
 # model = UNet(time_emb_dim=196).to(device)
 
 ## just testing (sample images)
@@ -277,6 +283,7 @@ def plot_grid(images, rows, cols, title):
         for j in range(cols):
             axs[i, j].imshow(images[i*cols + j], cmap='gray')
             axs[i, j].axis('off')
+    plt.savefig('diffusion_samples.png')
     plt.show()
 
 plot_grid([sample(model, image_size=150, device=device).squeeze().cpu().numpy() for _ in range(16)], 4, 4, "Some Strong Gravitational Lensing Images")

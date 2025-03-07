@@ -5,6 +5,11 @@ loss is decreasing still it doesnt seem to be doing antyhing, i suspect some cha
 
 Trying with modified architecture thanks to vid by umar jamil [new code v1](2code.py)
 
+It is learning something
+
+![16x images samples on older new code with t=128 and 25 epochs](images/2code_25_t128_many_Figure_1.png)
+
+[model checkpoint](model_checkpoints/old_diffusion_model_t128_epoch50.pth) (says 50 but its 25 epochs)
 
 After 25 epochs, with time_emb_dim=196, these are some images being generated
 
