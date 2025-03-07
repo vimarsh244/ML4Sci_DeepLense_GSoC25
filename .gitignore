@@ -4,3 +4,5 @@ SuperRes_Dataset/*
 Diffusion_Samples/*
 Q5_PINN/Bestmodel.model
 lens-finding-test/*
+
+Q4_Diffusion/model_checkpoints/new_diffusion_model_t128_epoch1.pth
