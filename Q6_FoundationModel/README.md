@@ -18,8 +18,21 @@
 
 ---
 
-#### Results v4
+### Results v4
 
+FINAL NOTEBOOK (with good results and all parts working): [notebook](4_deeplense-foundation-model.ipynb)
+
+[Weights](results_4)
+
+
+![Masked Encoder results](results_4/__results___files/__results___16_202.png)
+
+![Classification Results](results_4/__results___files/__results___17_141.png)
+
+![Super Resolution results](results_4/__results___files/__results___18_202.png)
+
+
+All the other graphs with results, etc. are in the notebook and also attached in the GSoC Proposal. 
 
 
 
@@ -47,7 +60,7 @@ also added Auto Masked Autoencoder... essentially automatically applies the mask
 
 [MAE Pretraining] Epoch [50/50], Loss: 0.000458
 
-![Masked Autoencoder normal 50 epoch](results_images_1/image-3.png)
+<!-- ![Masked Autoencoder normal 50 epoch](results_images_1/image-3.png) -->
 
 
 ###### Classification
@@ -67,13 +80,13 @@ Class      | AUC Score
 Micro-avg  | 0.6735
 Macro-avg  | 0.7429
 ```
-![Using previous encoder classify](results_images_1/image-4.png)
+<!-- ![Using previous encoder classify](results_images_1/image-4.png) -->
 
 [Classifier] Epoch [36/50], Train Loss: 0.0142, Train Acc: 99.66%, Val Loss: 0.4523, Val Acc: 88.17%, ROC AUC: 0.9699  
 Early stopping triggered after 36 epochs  
 Loaded best model with AUC: 0.9705
 
-![Finetuning the full model](results_images_1/image-5.png)
+<!-- ![Finetuning the full model](results_images_1/image-5.png) -->
 ```
 AUC Scores:
 ------------------------------
@@ -92,9 +105,9 @@ Macro-avg  | 0.9699
 
 [AutoMAE] Epoch [50/50], Recon Loss: 0.000490, Mask Loss: -0.000049, Total Loss: -0.000049, Mode: Mask Update
 
-![Auto MAE image reconstruction](results_images_1/image-6.png)
-
-![AutoMAE training history](results_images_1/image-7.png)
+<!-- ![Auto MAE image reconstruction](results_images_1/image-6.png) -->
+<!--  -->
+<!-- ![AutoMAE training history](results_images_1/image-7.png) -->
 
 ##### Classification with automae encoder
 
@@ -102,7 +115,7 @@ Macro-avg  | 0.9699
 Early stopping triggered after 18 epochs  
 Loaded best model with AUC: 0.6934
 
-![alt text](results_images_1/image-8.png)
+<!-- ![alt text](results_images_1/image-8.png) -->
 
 ```
 AUC Scores:
@@ -122,7 +135,7 @@ Fine-tuning the entire model...
 Early stopping triggered after 21 epochs  
 Loaded best model with AUC: 0.9321
 
-![alt text](results_images_1/image-9.png)
+<!-- ![alt text](results_images_1/image-9.png) -->
 
 ```
 AUC Scores:
@@ -141,7 +154,7 @@ Macro-avg  | 0.8986
 
 [Super-Resolution] Epoch [50/50], MSE Loss: 0.000093, L1 Loss: 0.005871, Total Loss: 0.003028, PSNR: 40.32 dB
 
-![Super Resolution Results](results_images_1/image-10.png)
+<!-- ![Super Resolution Results](results_images_1/image-10.png) -->
 
 ---
 
@@ -149,7 +162,7 @@ Macro-avg  | 0.8986
 
 `[MAE Pretraining] Epoch [50/50], Loss: 0.000390`
 
-![Reconstruction of image](results_old/image-2.png)
+<!-- ![Reconstruction of image](results_old/image-2.png) -->
 
 ```
 [Classifier] Epoch [31/50], Train Loss: 0.5620, Train Acc: 75.14%, Val Loss: 0.9332, Val Acc: 61.07%, ROC AUC: 0.8208
@@ -165,7 +178,7 @@ Fine-tuning the entire model...
 
 `[Super-Resolution] Epoch [50/50], MSE Loss: 0.000093, L1 Loss: 0.005868, Total Loss: 0.003027, PSNR: 40.34 dB`
 
-![Super Resolution](results_old/image-1.png)
+<!-- ![Super Resolution](results_old/image-1.png) -->
 
 
 
@@ -173,7 +186,7 @@ Fine-tuning the entire model...
 
 [Weights](weights_old)
 
-![First succcessful run superresolution for random images](results_old/SuperResolution_v0_1.png)
+<!-- ![First succcessful run superresolution for random images](results_old/SuperResolution_v0_1.png) -->
 
 
 #### Results run 2:
@@ -265,7 +278,7 @@ Starting super-resolution fine-tuning...
 
 ```
 
-![Superres sun 2](results_old/image.png)
+<!-- ![Superres sun 2](results_old/image.png) -->
 
 
 ## good resources

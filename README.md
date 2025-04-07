@@ -48,6 +48,8 @@ doccumentation in progress, but below are the questions attempted and their read
     - ... to add here the eqn
     - train with that
 
+    (done all the above.. see README for results)
+
     There are still some issues as the val loss after a point goes haywire and havent been able to figure out why that is happening
 
 - **Q6_FoundationModel**  
@@ -58,10 +60,6 @@ doccumentation in progress, but below are the questions attempted and their read
     - Fine-tuning on multi-class classification (no_sub, cdm, axion) using a the earlier trained encoder.
     - Super-resolution fine-tuning on low-resolution (LR) to high-resolution (HR) image tasks.
     
-
-
-
-
 
 All the details are in each's respective READMEs. They are more like notes rn, .. like logs
 
